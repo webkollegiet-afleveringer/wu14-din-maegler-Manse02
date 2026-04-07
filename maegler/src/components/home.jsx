@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
 import "../scss/home.scss";
 
@@ -51,8 +52,10 @@ const Home = () => {
             <span className="phone"> +45 7070 4000</span>
           </div>
           <div className="right">
-            <img src="./public/images/user.svg" alt="logo" />
-            <span className="login-link"> Log ind</span>
+            <img src="/images/user.svg" alt="logo" />
+            <Link to="/login" className="login-link">
+              Log ind
+            </Link>
           </div>
         </div>
 
@@ -64,7 +67,7 @@ const Home = () => {
             <a href="#">Boliger til salg</a>
             <a href="#">Mæglere</a>
             <a href="#">Mine favoritter</a>
-            <a href="#">Kontakt os</a>
+            <a href="/contact">Kontakt os</a>
           </nav>
         </div>
       </header>
