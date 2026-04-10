@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import "../scss/register.scss";
+import "../scss/login.scss";
 
 const Register = () => {
   const handleSubmit = (event) => {
@@ -8,8 +8,9 @@ const Register = () => {
   };
 
   return (
-    <div className="register-page">
-      <header className="register-header">
+    <div className="login-page">
+      <header className="login-header">
+        {/* TOPBAR */}
         <div className="topbar">
           <div className="topbar-left">
             <div className="topbar-item">
@@ -17,122 +18,113 @@ const Register = () => {
               <span>4000@dinmaegler.com</span>
             </div>
             <div className="topbar-item">
-              <img src="/images/call.svg" alt="Telefon" />
+              <img src="/images/call2.svg" alt="Telefon" />
               <span>+45 7070 4000</span>
             </div>
           </div>
+
           <div className="topbar-right">
             <img src="/images/user.svg" alt="Log ind" />
             <Link to="/login">Log ind</Link>
           </div>
         </div>
 
-        <nav className="register-nav">
-          <div className="logo-row">
-            <img src="/images/Din.svg" alt="Din Mægler" className="logo-icon" />
-            <span className="logo-text">DIN MÆGLER</span>
-          </div>
-          <ul className="nav-links">
-            <li>
-              <Link to="/">Boliger til salg</Link>
-            </li>
-            <li>
-              <Link to="/agents">Mæglere</Link>
-            </li>
-            <li>
-              <Link to="/favorites">Mine favoritter</Link>
-            </li>
-            <li>
-              <Link to="/contact">Kontakt os</Link>
-            </li>
-          </ul>
-        </nav>
+        {/* NAVBAR */}
+        <div className="navbar">
+          <img src="/images/Din.svg" alt="logo" />
 
-        <section className="register-hero">
-          <div className="hero-overlay" />
+          <nav>
+            <a href="/propertylist">Boliger til salg</a>
+            <a href="/agents">Mæglere</a>
+            <a href="/favorites">Mine favoritter</a>
+            <a href="/contact">Kontakt os</a>
+          </nav>
+        </div>
+
+        {/* HERO */}
+        <div className="hero">
           <div className="hero-content">
-            <p className="hero-label">Account Register</p>
-            <h1>Opret bruger hos Din Mægler</h1>
-            <div className="breadcrumb">
-              <Link to="/">Home</Link>
-              <span>/</span>
-              <span>Register</span>
-            </div>
+            <h1>Account Register</h1>
+            <span>Home | Register</span>
           </div>
-        </section>
+        </div>
       </header>
 
-      <main className="register-main">
-        <section className="register-card">
+      {/* MAIN */}
+      <main className="login-main">
+        <div className="login-box">
           <h2>Opret bruger hos Din Mægler</h2>
-          <p className="register-description">
-            Opret en bruger og få nem adgang til dine favoritter, boliger og kontakt til vores team.
-          </p>
-          <form className="register-form" onSubmit={handleSubmit}>
-            <label>
-              Fulde navn
-              <input type="text" placeholder="Fulde navn" required />
-            </label>
-            <label>
-              Email adresse
-              <input type="email" placeholder="Email adresse" required />
-            </label>
-            <label>
-              Password
-              <input type="password" placeholder="Password" required />
-            </label>
-            <label>
-              Bekræft password
-              <input type="password" placeholder="Bekræft password" required />
-            </label>
-            <button type="submit" className="register-button">
-              Opret bruger
-            </button>
+
+          <form onSubmit={handleSubmit}>
+            <input type="text" placeholder="Fulde navn" required />
+            <input type="email" placeholder="Email adresse" required />
+            <input type="password" placeholder="Password" required />
+            <input type="password" placeholder="Bekræft password" required />
+
+            <button type="submit">Opret bruger</button>
           </form>
-        </section>
 
-        <section className="register-info">
-          <div className="info-card info-card--contact">
-            <div className="info-icon">
-              <img src="/images/call2.svg" alt="Kontakt" />
-            </div>
-            <h3>Kontakt os</h3>
-            <p>Der er mange variationer af passager af Lorem Ipsum tilgængelig, men hovedparten er blevet ændret i en eller anden form.</p>
-            <div className="contact-details">
-              <div>
-                <strong>Ring til os</strong>
-                <p>+45 7070 4000</p>
-              </div>
-              <div>
-                <strong>Send en mail</strong>
-                <p>4000@dinmaegler.com</p>
-              </div>
-              <div>
-                <strong>Besøg butik</strong>
-                <p>Stændertorvet 78, 4000 Roskilde</p>
-              </div>
-            </div>
+          <p className="divider">Har du allerede en konto?</p>
+
+          <div className="socials">
+            <button className="google">Google</button>
+            <button className="facebook">Facebook</button>
+            <button className="twitter">Twitter</button>
           </div>
 
-          <div className="info-card info-card--links">
-            <h3>Quick Links</h3>
-            <ul>
-              <li>
-                <Link to="/">Boliger til salg</Link>
-              </li>
-              <li>
-                <Link to="/agents">Mæglere</Link>
-              </li>
-              <li>
-                <Link to="/contact">Kontakt os</Link>
-              </li>
-              <li>
-                <Link to="/login">Log ind / bliv bruger</Link>
-              </li>
-            </ul>
-          </div>
-        </section>
+          <p className="register">
+            Har du allerede en konto? <Link to="/login">Log ind</Link>
+          </p>
+        </div>
       </main>
+
+      <footer className="footer">
+        <div className="footer-main">
+          <div className="footer-container">
+            <div className="footer-left">
+              <a href="/">
+                <img src="./public/images/din.svg" alt="logo" />
+              </a>
+              <p>
+                There are many variations of passages of Lorem Ipsum available, but the majority have <br /> suffered alteration in some form, by injected humour, or randomised words.
+              </p>
+
+              <div className="contact-box">
+                <div>
+                  <img src="./public/images/call2.svg" alt="icon3" />
+                  <span>+45 7070 4000</span>
+                </div>
+                <div>
+                  <img src="./public/images/plane.svg" alt="icon3" />
+                  <span>4000@dinmaegler.com</span>
+                </div>
+                <div>
+                  <img src="./public/images/icon.svg" alt="icon3" />
+                  <span>Stændertorvet 78, 4000 Roskilde</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-links">
+              <h4>Quick Links</h4>
+              <a href="#">Boliger til salg</a>
+              <a href="#">Mæglere</a>
+              <a href="#">Kontakt os</a>
+              <a href="#">Log ind / bliv bruger</a>
+            </div>
+
+            <div className="footer-member">
+              <p>Medlem af</p>
+              <h1>DMS</h1>
+              <span>Dansk Mægler Sammenslutning</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>Layout By JL Bank 2020</p>
+        </div>
+      </footer>
     </div>
   );
 };

@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import React, { useEffect, useState } from "react";
+import '@fontsource-variable/roboto/wght.css';
 import "../scss/home.scss";
 
 const Home = () => {
   const [homes, setHomes] = useState([]);
+  const [heroImage, setHeroImage] = useState("");
   const [totalHomes, setTotalHomes] = useState(0);
   const [soldHomes, setSoldHomes] = useState(0);
+  const [agents, setAgents] = useState([]);
 
   useEffect(() => {
     const fetchHomes = async () => {
@@ -19,12 +22,17 @@ const Home = () => {
           ...home,
           image:
             home.image ||
-            (home.images && home.images[0]) ||
+            (home.images && home.images[0]?.url) ||
             (home.media && home.media[0]?.url) ||
             "",
         }));
 
         setHomes(homesWithImages);
+        if (homesWithImages[0]) {
+          const firstImage =
+            homesWithImages[0].images?.[0]?.url || homesWithImages[0].image;
+          if (firstImage) setHeroImage(firstImage);
+        }
 
         const resCount = await fetch(
           "https://dinmaegler.onrender.com/homes/count"
@@ -39,6 +47,26 @@ const Home = () => {
     };
 
     fetchHomes();
+  }, []);
+
+  useEffect(() => {
+    const fetchAgents = async () => {
+      try {
+        const res = await fetch("https://dinmaegler.onrender.com/agents?_limit=3");
+        const data = await res.json();
+
+        const agentsWithImages = data.map((agent) => ({
+          ...agent,
+          imageUrl: agent.image?.url || "",
+        }));
+
+        setAgents(agentsWithImages);
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchAgents();
   }, []);
 
   return (
@@ -64,15 +92,22 @@ const Home = () => {
             <img src="./public/images/din.svg" alt="logo" />
           </div>
           <nav>
-            <a href="#">Boliger til salg</a>
-            <a href="#">Mæglere</a>
+            <Link to="/propertylist">Boliger til salg</Link>
+            <Link to="/agents">Mæglere</Link>
             <a href="#">Mine favoritter</a>
             <a href="/contact">Kontakt os</a>
           </nav>
         </div>
       </header>
 
-      <section className="hero">
+      <section
+        className="hero"
+        style={{
+          backgroundImage: heroImage
+            ? `url('${heroImage}')`
+            : "url('/images/background.svg')",
+        }}
+      >
         <div className="overlay">
           <h1>Søg efter din drømmebolig</h1>
           <div className="searchBox">
@@ -192,8 +227,10 @@ const Home = () => {
   </div>
 
   <div className="center">
-    <button className="see-more">Se alle boliger</button>
-  </div>
+      <Link to="/propertylist">
+        <button className="see-more">Se alle boliger</button>
+      </Link>
+    </div>
 </section>
 
 <section className="newsletter">
@@ -219,13 +256,17 @@ const Home = () => {
     </p>
 
     <div className="agents-grid">
-      {[1, 2, 3].map((item) => (
-        <div key={item} className="agent-card">
-          <img src="/images/person.jpg" alt="agent" />
+      {agents.map((agent) => (
+        <div key={agent.id} className="agent-card">
+          {agent.imageUrl ? (
+            <img src={agent.imageUrl} alt={agent.name} />
+          ) : (
+            <img src="/images/person.jpg" alt="agent" />
+          )}
 
           <div className="agent-info">
-            <h4>Grant Marshall</h4>
-            <p>Ejendomsmægler, MDM5</p>
+            <h4>{agent.name}</h4>
+            <p>{agent.title}</p>
 
             <div className="icons">
               <img src="./public/images/vector.svg" alt="mail" />
@@ -237,7 +278,9 @@ const Home = () => {
     </div>
 
     <div className="center">
-      <button>Se alle mæglere</button>
+      <Link to="/agents">
+        <button>Se alle mæglere</button>
+      </Link>
     </div>
   </div>
 </section>

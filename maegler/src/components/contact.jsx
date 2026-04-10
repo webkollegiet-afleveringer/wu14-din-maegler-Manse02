@@ -18,10 +18,11 @@ const Contact = () => {
               <span>4000@dinmaegler.com</span>
             </div>
             <div className="topbar-item">
-              <img src="/images/call.svg" alt="Telefon" />
+              <img src="/images/call2.svg" alt="Telefon" />
               <span>+45 7070 4000</span>
             </div>
           </div>
+
           <div className="topbar-right">
             <img src="/images/user.svg" alt="Log ind" />
             <Link to="/login" className="login-link">
@@ -37,17 +38,17 @@ const Contact = () => {
               <img src="/images/Din.svg" alt="Din Mægler" />
             </Link>
           </div>
+
           <nav>
-            <a href="#">Boliger til salg</a>
-            <a href="#">Mæglere</a>
-            <a href="#">Mine favoritter</a>
-            <a href="#">Kontakt os</a>
+            <Link to="/propertylist">Boliger til salg</Link>
+            <Link to="/agents">Mæglere</Link>
+            <Link to="/favorites">Mine favoritter</Link>
+            <Link to="/contact">Kontakt os</Link>
           </nav>
         </div>
 
         {/* HERO */}
         <div className="hero-section">
-          <div className="hero-overlay"></div>
           <div className="hero-content">
             <h1>Kontakt os</h1>
           </div>
@@ -58,9 +59,7 @@ const Contact = () => {
         {/* INTRO */}
         <section className="intro-section">
           <div className="intro-text">
-            <span className="eyebrow">
-              Vi sidder klar til at besvare dine spørgsmål
-            </span>
+            <h2>Vi sidder klar til at besvare dine spørgsmål</h2>
             <p>
               Der kan opstå tvivl om mange ting når man gerne vil, eller er i
               gang med at sælge sin bolig. Vores medarbejdere sidder klar alle
@@ -79,6 +78,7 @@ const Contact = () => {
                   <label>Navn</label>
                   <input type="text" placeholder="Indtast dit navn" required />
                 </div>
+
                 <div className="form-group">
                   <label>Email</label>
                   <input
@@ -115,11 +115,11 @@ const Contact = () => {
             </form>
           </div>
 
-          {/* INFO */}
+          {/* INFO CARDS */}
           <div className="contact-cards">
             <div className="info-card">
               <div className="card-icon">
-                <img src="/images/call2.svg" alt="Ring til os" />
+                <img src="/public/images/call2.svg" alt="Ring til os" />
               </div>
               <h3>Ring til os</h3>
               <p>+45 7070 4000</p>
@@ -143,6 +143,54 @@ const Contact = () => {
           </div>
         </section>
       </main>
+
+      <footer className="footer">
+        <div className="footer-main">
+          <div className="footer-container">
+            <div className="footer-left">
+              <a href="/">
+                <img src="./public/images/din.svg" alt="logo" />
+              </a>
+              <p>
+                There are many variations of passages of Lorem Ipsum available, but the majority have <br /> suffered alteration in some form, by injected humour, or randomised words.
+              </p>
+
+              <div className="contact-box">
+                <div>
+                  <img src="./public/images/call2.svg" alt="icon3" />
+                  <span>+45 7070 4000</span>
+                </div>
+                <div>
+                  <img src="./public/images/plane.svg" alt="icon3" />
+                  <span>4000@dinmaegler.com</span>
+                </div>
+                <div>
+                  <img src="./public/images/icon.svg" alt="icon3" />
+                  <span>Stændertorvet 78, 4000 Roskilde</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="footer-links">
+              <h4>Quick Links</h4>
+              <a href="#">Boliger til salg</a>
+              <a href="#">Mæglere</a>
+              <a href="#">Kontakt os</a>
+              <a href="#">Log ind / bliv bruger</a>
+            </div>
+
+            <div className="footer-member">
+              <p>Medlem af</p>
+              <h1>DMS</h1>
+              <span>Dansk Mægler Sammenslutning</span>
+            </div>
+          </div>
+        </div>
+
+        <div className="footer-bottom">
+          <p>Layout By JL Bank 2020</p>
+        </div>
+      </footer>
     </div>
   );
 };
