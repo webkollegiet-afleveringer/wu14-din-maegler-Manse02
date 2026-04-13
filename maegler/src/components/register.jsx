@@ -31,8 +31,9 @@ const Register = () => {
 
         {/* NAVBAR */}
         <div className="navbar">
+          <Link to="/">
           <img src="/images/Din.svg" alt="logo" />
-
+          </Link>
           <nav>
             <a href="/propertylist">Boliger til salg</a>
             <a href="/agents">Mæglere</a>

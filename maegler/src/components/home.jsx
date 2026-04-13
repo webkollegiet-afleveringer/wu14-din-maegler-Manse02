@@ -21,17 +21,15 @@ const Home = () => {
         const homesWithImages = dataHomes.map((home) => ({
           ...home,
           image:
-            home.image ||
-            (home.images && home.images[0]?.url) ||
-            (home.media && home.media[0]?.url) ||
+            home.image?.url ||
+            home.images?.[0]?.url ||
+            home.media?.[0]?.url ||
             "",
         }));
 
         setHomes(homesWithImages);
-        if (homesWithImages[0]) {
-          const firstImage =
-            homesWithImages[0].images?.[0]?.url || homesWithImages[0].image;
-          if (firstImage) setHeroImage(firstImage);
+        if (homesWithImages[0]?.image) {
+          setHeroImage(homesWithImages[0].image);
         }
 
         const resCount = await fetch(
@@ -106,6 +104,9 @@ const Home = () => {
           backgroundImage: heroImage
             ? `url('${heroImage}')`
             : "url('/images/background.svg')",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
         }}
       >
         <div className="overlay">
